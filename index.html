@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PhynoraTime — Your Countdown Defines Your Destiny</title>
+
+  <!-- PWA bits (optional) -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#0b0e1a" />
+  <link rel="icon" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- Luxon for date/time handling -->
+ </head>
+<body>
+  <div class="wrap">
+    <!-- Header -->
+    <header class="top">
+      <div class="brand-row">
+        <img src="assets/logo.png" class="mini" alt="Logo" />
+        <h1>PhynoraTime</h1>
+      </div>
+      <p class="sub">Your Countdown Defines Your Destiny 🕰️</p>
+    </header>
+
+    <!-- Countdown card -->
+    <section class="card">
+      <div class="card-title">⏳ Countdown</div>
+
+      <!-- Top controls (DATE-ONLY) -->
+      <div class="control-row grid">
+        <label class="field">
+          <span>Start (date)</span>
+          <input id="startInput" type="date" />
+        </label>
+
+        <label class="field">
+          <span>End (date)</span>
+          <input id="endInput" type="date" placeholder="(optional)" />
+        </label>
+
+        <label class="field">
+          <span>Mission (name)</span>
+          <input id="missionInput" type="text" placeholder="(e.g., Mission Phoenix Begin)" />
+        </label>
+
+        <button id="setBtn" class="btn btn-primary">Set Target & Start</button>
+      </div>
+
+      <!-- Build by adding duration -->
+      <div class="duration-card">
+        <div class="duration-title">Or build target by adding time to Start</div>
+        <div class="duration-grid">
+          <label class="field small"><span>Years</span>   <input id="durYears"   type="number" min="0" value="5" /></label>
+          <label class="field small"><span>Months</span>  <input id="durMonths"  type="number" min="0" value="0" /></label>
+          <label class="field small"><span>Weeks</span>   <input id="durWeeks"   type="number" min="0" value="0" /></label>
+          <label class="field small"><span>Days</span>    <input id="durDays"    type="number" min="0" value="0" /></label>
+          <label class="field small"><span>Hours</span>   <input id="durHours"   type="number" min="0" value="0" /></label>
+          <label class="field small"><span>Minutes</span> <input id="durMins"    type="number" min="0" value="0" /></label>
+          <label class="field small"><span>Seconds</span> <input id="durSecs"    type="number" min="0" value="0" /></label>
+          <label class="field small"><span>Millis</span>  <input id="durMillis"  type="number" min="0" value="0" /></label>
+        </div>
+        <p class="hint">Tip: If you set an <strong>End</strong> date, it overrides the duration fields.</p>
+      </div>
+
+      <!-- Summary + progress -->
+      <p id="summaryLine" class="muted"></p>
+      <div class="progress" style="margin-top:8px">
+        <div class="bar"><div id="fill" class="fill"></div></div>
+        <div class="legend"><span id="progressText">0.00% complete</span></div>
+      </div>
+
+      <!-- Live counters -->
+      <div class="grid" style="margin-top:14px">
+        <div class="tile"><div class="label">Years</div>        <div class="value" data-unit="years">0</div></div>
+        <div class="tile"><div class="label">Months</div>       <div class="value" data-unit="months">0</div></div>
+        <div class="tile"><div class="label">Weeks</div>        <div class="value" data-unit="weeks">0</div></div>
+        <div class="tile"><div class="label">Days</div>         <div class="value" data-unit="days">0</div></div>
+        <div class="tile"><div class="label">Hours</div>        <div class="value" data-unit="hours">0</div></div>
+        <div class="tile"><div class="label">Minutes</div>      <div class="value" data-unit="minutes">0</div></div>
+        <div class="tile"><div class="label">Seconds</div>      <div class="value" data-unit="seconds">0</div></div>
+        <div class="tile"><div class="label">Milliseconds</div> <div class="value" data-unit="millis">000</div></div>
+      </div>
+    </section>
+
+    <!-- Goals -->
+    <section class="card">
+      <div class="card-title">🎯 Goals Tracker</div>
+      <p class="muted">Let’s go to achieve</p>
+      <p id="stats" class="muted">0 / 0 completed</p>
+      <div id="goals" class="goals"></div>
+
+      <div class="controls controls--add">
+        <input id="newGoal" placeholder="Add a new goal (e.g., tomorrow wake up at 5 am)" />
+        <button id="add" class="ok">Add Goal</button>
+      </div>
+    </section>
+  </div>
+
+  <!-- Service Worker (optional, disable if you don't have sw.js) -->
+  <script>
+    // Comment out if no sw.js file exists to avoid errors:
+    // if ('serviceWorker' in navigator) {
+    //   addEventListener('load', () =>
+    //     navigator.serviceWorker.register('./sw.js').catch(console.error)
+    //   );
+    // }
+  </script>
+
+  <!-- App logic -->
+  <script src="js/app.js"></script>
+
+  <!-- Optional color switch helpers -->
+  <script>
+    (() => {
+      const el = document.getElementById('switchColor');
+      const reset = document.getElementById('resetColor');
+      const KEY = 'phynoraSwitchColor';
+      const apply = v => document.documentElement.style.setProperty('--switch-color', v || '#00f5ff');
+      const saved = localStorage.getItem(KEY);
+      if (saved) { if(el) el.value = saved; apply(saved); } else { apply('#00f5ff'); }
+      el?.addEventListener('input', e => { const v = e.target.value; apply(v); localStorage.setItem(KEY, v); });
+      reset?.addEventListener('click', () => { const v = '#00f5ff'; if(el) el.value = v; apply(v); localStorage.setItem(KEY, v); });
+    })();
+  </script>
+</body>
+</html>
