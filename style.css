@@ -128,3 +128,11 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 }
 #upgradeBtn:hover{ background:#0b1220; }
 #limitInfo b{ color:#fff; }
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #2a00b7; /* match your app's purple theme */
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+}
+
