@@ -128,3 +128,97 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 }
 #upgradeBtn:hover{ background:#0b1220; }
 #limitInfo b{ color:#fff; }
+/* === RESPONSIVE FIX FOR PHYNORATIME === */
+
+@media (max-width: 768px) {
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: #ffffff;
+  }
+
+  .wrap {
+    width: 100%;
+    padding: 10px;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 22px;
+    text-align: center;
+  }
+
+  .sub {
+    font-size: 13px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .card {
+    padding: 15px;
+    border-radius: 15px;
+    width: 100%;
+    margin: auto;
+    box-sizing: border-box;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .tile {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+
+  .value {
+    font-size: 30px;
+  }
+
+  .controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+
+  button,
+  .btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  .ok {
+    font-size: 14px;
+  }
+
+  /* Fix for Goals Tracker */
+  .g {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .g .tools {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
