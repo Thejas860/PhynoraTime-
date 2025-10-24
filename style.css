@@ -128,3 +128,8 @@ input[type="date"]{ -webkit-appearance:none; appearance:none; }
 }
 #upgradeBtn:hover{ background:#0b1220; }
 #limitInfo b{ color:#fff; }
+body {
+  background: linear-gradient(135deg, #522be0 0%, #3a00b7 100%);
+  color: white;
+}
+
